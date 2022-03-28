@@ -8,6 +8,8 @@
 # testing
 /coverage
 
+redux.js
+
 # production
 /build
 

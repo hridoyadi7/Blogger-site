@@ -1,24 +1,38 @@
-import logo from './logo.svg';
+
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Container} from 'react-bootstrap'
+import Posts from './components/Posts/Posts';
+import LandingPage from './components/LandingPage';
+import Navbar from './components/Navbar';
+import LoginComponent from './components/LoginComponent';
+import Post from './components/Post';
+import Page404 from './components/Page404';
+import About from './components/About';
+import Contact from './components/Contact';
+import HOC from './components/HOC';
+import {
+  BrowserRouter,
+  Route,
+  Routes
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <Container className="app-container">
+        <Routes>
+          <Route path="/" element={<LandingPage/>} />
+          <Route path="/posts" element={<Posts/>} />
+          <Route path="/login" element={<LoginComponent/>} />
+          <Route path="/about" element={<HOC component={About}/>} />
+          <Route path="/contact" element={<HOC component={Contact}/>} />
+          <Route path='/post/:id' element={<Post />}  />
+          <Route path="*" element={<Page404/>} />
+        </Routes>
+      </Container>
+    </BrowserRouter>
   );
 }
 
